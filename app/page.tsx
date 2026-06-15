@@ -10,7 +10,7 @@ import BottomNav from "../src/components/BottomNav";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-6">
       <MyNavbar />
 
       <div className="bg-indigo-50 mx-4 mt-3 rounded-2xl px-3 py-3">
