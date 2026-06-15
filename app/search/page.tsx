@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchHeader from "../../src/components/SearchHeader";
 import SearchResults from "../../src/components/SearchResults";
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All");
@@ -19,8 +19,21 @@ export default function SearchPage() {
 
   return (
     <main className="min-h-screen bg-white max-w-md mx-auto pb-2">
-      <SearchHeader query={query} setQuery={setQuery} filter={filter} setFilter={setFilter} />
+      <SearchHeader
+        query={query}
+        setQuery={setQuery}
+        filter={filter}
+        setFilter={setFilter}
+      />
       <SearchResults query={query} filter={filter} />
     </main>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }
