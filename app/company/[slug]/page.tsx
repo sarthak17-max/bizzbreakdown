@@ -15,7 +15,7 @@ export default async function CompanyPage({
   }
 
   return (
-    <main className="min-h-screen bg-white max-w-md mx-auto pb-2">
+   <main className="min-h-screen bg-white w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
       <CompanyDetail company={company} slug={slug} />
     </main>
   );
