@@ -1,5 +1,6 @@
 import { companyData } from "../../../src/companyData";
 import CompanyDetail from "../../../src/components/CompanyDetail";
+import BottomNav from "../../../src/components/BottomNav";
 import { notFound } from "next/navigation";
 
 export default async function CompanyPage({
@@ -15,8 +16,9 @@ export default async function CompanyPage({
   }
 
   return (
-<main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-20">
+    <main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-20">
       <CompanyDetail company={company} slug={slug} />
+      <BottomNav />
     </main>
   );
 }

@@ -4,6 +4,7 @@ import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchHeader from "../../src/components/SearchHeader";
 import SearchResults from "../../src/components/SearchResults";
+import BottomNav from "../../src/components/BottomNav";
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -26,6 +27,7 @@ function SearchContent() {
         setFilter={setFilter}
       />
       <SearchResults query={query} filter={filter} />
+      <BottomNav />
     </main>
   );
 }
