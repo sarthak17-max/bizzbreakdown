@@ -1,11 +1,13 @@
-import IndustriesHeader from "../../src/components/IndustriesHeader";
-import IndustriesList from "../../src/components/IndustriesList";
+import SavedHeader from "../../src/components/SavedHeader";
+import SavedEmptyState from "../../src/components/SavedEmptyState";
+import BottomNav from "../../src/components/BottomNav";
 
-export default function IndustriesPage() {
+export default function SavedPage() {
   return (
     <main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-20">
-      <IndustriesHeader />
-      <IndustriesList />
+      <SavedHeader />
+      <SavedEmptyState />
+      <BottomNav />
     </main>
   );
 }
