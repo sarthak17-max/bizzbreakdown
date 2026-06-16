@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const menuItems = [
@@ -13,6 +14,7 @@ const menuItems = [
 
 export default function MyNavbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -21,19 +23,23 @@ export default function MyNavbar() {
         <h1 className="text-xl font-bold" style={{ fontFamily: 'Sora, sans-serif' }}>
           <span className="text-black">Bizz</span><span className="text-purple-600">Breakdown</span>
         </h1>
-
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-6">
-          {menuItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-sm text-gray-600 hover:text-purple-600 font-medium transition"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+{/* Desktop nav links */}
+<div className="hidden md:flex items-center gap-6">
+  {menuItems.map((item) => {
+    const isActive = pathname === item.href;
+    return (
+      <Link
+        key={item.label}
+        href={item.href}
+        className={`text-sm font-medium transition ${
+          isActive ? 'text-purple-600' : 'text-gray-600 hover:text-purple-600'
+        }`}
+      >
+        {item.label}
+      </Link>
+    );
+  })}
+</div>
 
         <Link href="/search" className="text-gray-600 text-xl md:hidden">🔍</Link>
       </nav>
