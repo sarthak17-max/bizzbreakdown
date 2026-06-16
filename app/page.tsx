@@ -10,19 +10,27 @@ import BottomNav from "../src/components/BottomNav";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-20">
+    <main className="min-h-screen bg-white w-full max-w-5xl mx-auto pb-20 md:pb-8">
       <MyNavbar />
 
-      <div className="bg-indigo-50 mx-4 mt-3 rounded-2xl px-3 py-3">
+      {/* Hero section - wider on desktop */}
+      <div className="bg-indigo-50 mx-4 mt-3 rounded-2xl px-3 py-3 md:mx-8 md:px-8 md:py-8 md:mt-6">
         <Hero />
         <SearchBar />
         <PopularSearches />
       </div>
 
-      <TrendingCompanies />
-      <PopularComparisons />
-      <ExploreByIndustry />
-      <SaveTrackBanner />
+      {/* Two column grid on desktop */}
+      <div className="md:grid md:grid-cols-2 md:gap-6 md:px-8 md:mt-6">
+        <TrendingCompanies />
+        <PopularComparisons />
+      </div>
+
+      <div className="md:grid md:grid-cols-2 md:gap-6 md:px-8 md:mt-2">
+        <ExploreByIndustry />
+        <SaveTrackBanner />
+      </div>
+
       <BottomNav />
     </main>
   );
