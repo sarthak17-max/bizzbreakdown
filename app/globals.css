@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   --background: #ffffff;
@@ -25,14 +24,18 @@ html, body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
+  position: relative;
 }
 
 main {
   overflow-x: hidden;
 }
 
-html, body {
-  overflow-x: hidden;
-  position: relative;
-  width: 100vw;
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
