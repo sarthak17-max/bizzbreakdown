@@ -2,13 +2,13 @@ import Link from "next/link";
 
 const industries = [
   { name: 'Food Delivery', emoji: '🛵', count: 2, bg: 'bg-red-50' },
-  { name: 'Quick Commerce', emoji: '⚡', count: 2, bg: 'bg-yellow-50' },
-  { name: 'FinTech', emoji: '🏦', count: 1, bg: 'bg-blue-50' },
-  { name: 'E-commerce', emoji: '🛒', count: 3, bg: 'bg-purple-50' },
-  { name: 'EdTech', emoji: '🎓', count: 2, bg: 'bg-green-50' },
-  { name: 'HealthTech', emoji: '❤️', count: 2, bg: 'bg-pink-50' },
-  { name: 'Travel', emoji: '✈️', count: 2, bg: 'bg-indigo-50' },
-  { name: 'Entertainment', emoji: '🎬', count: 2, bg: 'bg-orange-50' },
+  { name: 'Quick Commerce', emoji: '⚡', count: 3, bg: 'bg-yellow-50' },
+  { name: 'FinTech', emoji: '🏦', count: 3, bg: 'bg-blue-50' },
+  { name: 'E-commerce', emoji: '🛒', count: 5, bg: 'bg-purple-50' },
+  { name: 'EdTech', emoji: '🎓', count: 3, bg: 'bg-green-50' },
+  { name: 'HealthTech', emoji: '❤️', count: 3, bg: 'bg-pink-50' },
+  { name: 'Travel', emoji: '✈️', count: 3, bg: 'bg-indigo-50' },
+  { name: 'Entertainment', emoji: '🎬', count: 3, bg: 'bg-orange-50' },
 ];
 
 export default function IndustriesList() {
