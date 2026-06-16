@@ -89,11 +89,11 @@ export default function CompanyDetail({ company, slug }: { company: any; slug: s
       {/* CTA */}
       <div className="px-4 mt-5 mb-4">
         <Link
-          href="/compare"
-          className="block text-center bg-purple-600 text-white text-xs font-semibold px-5 py-3 rounded-full hover:bg-purple-700 transition"
-        >
-          Compare with another company
-        </Link>
+  href={`/compare?a=${slug}`}
+  className="block text-center bg-purple-600 text-white text-xs font-semibold px-5 py-3 rounded-full hover:bg-purple-700 transition"
+>
+  Compare with another company
+</Link>
       </div>
     </div>
   );
