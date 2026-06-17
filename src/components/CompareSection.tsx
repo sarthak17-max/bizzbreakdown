@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { companyData } from "../companyData";
+import { getAllCompanies } from "../lib/companies";
 
-const companies = Object.entries(companyData).map(([slug, c]) => ({ slug, ...c }));
-
-const metrics: { label: string; key: keyof typeof companies[0] }[] = [
+const metrics: { label: string; key: string }[] = [
   { label: "Category", key: "category" },
   { label: "Valuation", key: "valuation" },
   { label: "Revenue", key: "revenue" },
@@ -17,21 +15,34 @@ const metrics: { label: string; key: keyof typeof companies[0] }[] = [
 
 export default function CompareSection() {
   const searchParams = useSearchParams();
-
-  const [companyA, setCompanyA] = useState(companies[0]);
-  const [companyB, setCompanyB] = useState(companies[1]);
+  const [companies, setCompanies] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [companyA, setCompanyA] = useState<any>(null);
+  const [companyB, setCompanyB] = useState<any>(null);
 
   useEffect(() => {
-    const a = searchParams.get("a");
-    const b = searchParams.get("b");
+    getAllCompanies().then((data) => {
+      setCompanies(data);
+      setLoading(false);
 
-    if (a && companyData[a]) {
-      setCompanyA({ slug: a, ...companyData[a] });
-    }
-    if (b && companyData[b]) {
-      setCompanyB({ slug: b, ...companyData[b] });
-    }
+      const a = searchParams.get("a");
+      const b = searchParams.get("b");
+
+      const foundA = data.find((c: any) => c.slug === a) || data[0];
+      const foundB = data.find((c: any) => c.slug === b) || data[1];
+
+      setCompanyA(foundA);
+      setCompanyB(foundB);
+    });
   }, [searchParams]);
+
+  if (loading || !companyA || !companyB) {
+    return (
+      <section className="px-4 mt-4">
+        <p className="text-xs text-gray-400 text-center mt-10">Loading companies...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="px-4 mt-4">

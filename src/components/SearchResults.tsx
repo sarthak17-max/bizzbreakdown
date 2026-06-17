@@ -1,14 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { companyData } from "../companyData";
-
-const results = Object.entries(companyData).map(([slug, c]) => ({
-  slug,
-  ...c,
-}));
+import { useEffect, useState } from "react";
+import { getAllCompanies } from "../lib/companies";
 
 export default function SearchResults({ query, filter }: { query: string; filter: string }) {
+  const [results, setResults] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllCompanies().then((data) => {
+      setResults(data);
+      setLoading(false);
+    });
+  }, []);
+
   const filtered = results.filter((item) => {
     const matchesQuery =
       item.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -18,6 +24,14 @@ export default function SearchResults({ query, filter }: { query: string; filter
 
     return matchesQuery && matchesFilter;
   });
+
+  if (loading) {
+    return (
+      <section className="px-4 mt-4">
+        <p className="text-xs text-gray-400 text-center mt-10">Loading companies...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="px-4 mt-4">

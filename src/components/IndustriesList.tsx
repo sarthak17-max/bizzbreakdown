@@ -1,21 +1,48 @@
-import Link from "next/link";
+"use client";
 
-const industries = [
-  { name: 'Food Delivery', emoji: '🛵', count: 2, bg: 'bg-red-50' },
-  { name: 'Quick Commerce', emoji: '⚡', count: 3, bg: 'bg-yellow-50' },
-  { name: 'FinTech', emoji: '🏦', count: 3, bg: 'bg-blue-50' },
-  { name: 'E-commerce', emoji: '🛒', count: 5, bg: 'bg-purple-50' },
-  { name: 'EdTech', emoji: '🎓', count: 3, bg: 'bg-green-50' },
-  { name: 'HealthTech', emoji: '❤️', count: 3, bg: 'bg-pink-50' },
-  { name: 'Travel', emoji: '✈️', count: 3, bg: 'bg-indigo-50' },
-  { name: 'Entertainment', emoji: '🎬', count: 3, bg: 'bg-orange-50' },
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getAllCompanies } from "../lib/companies";
+
+const industryMeta = [
+  { name: 'Food Delivery', emoji: '🛵', bg: 'bg-red-50' },
+  { name: 'Quick Commerce', emoji: '⚡', bg: 'bg-yellow-50' },
+  { name: 'FinTech', emoji: '🏦', bg: 'bg-blue-50' },
+  { name: 'E-commerce', emoji: '🛒', bg: 'bg-purple-50' },
+  { name: 'EdTech', emoji: '🎓', bg: 'bg-green-50' },
+  { name: 'HealthTech', emoji: '❤️', bg: 'bg-pink-50' },
+  { name: 'Travel', emoji: '✈️', bg: 'bg-indigo-50' },
+  { name: 'Entertainment', emoji: '🎬', bg: 'bg-orange-50' },
+  { name: 'Beauty E-commerce', emoji: '💄', bg: 'bg-rose-50' },
 ];
 
 export default function IndustriesList() {
+  const [counts, setCounts] = useState<Record<string, number>>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllCompanies().then((data) => {
+      const tally: Record<string, number> = {};
+      data.forEach((c: any) => {
+        tally[c.category] = (tally[c.category] || 0) + 1;
+      });
+      setCounts(tally);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="px-4 mt-4">
+        <p className="text-xs text-gray-400 text-center mt-10">Loading industries...</p>
+      </section>
+    );
+  }
+
   return (
     <section className="px-4 mt-4">
       <div className="grid grid-cols-2 gap-3">
-        {industries.map((ind) => (
+        {industryMeta.map((ind) => (
           <Link
             href={`/search?category=${encodeURIComponent(ind.name)}`}
             key={ind.name}
@@ -29,7 +56,7 @@ export default function IndustriesList() {
                 {ind.name}
               </p>
               <p className="text-[10px] text-gray-400 mt-0.5">
-                {ind.count} companies
+                {counts[ind.name] || 0} companies
               </p>
             </div>
           </Link>

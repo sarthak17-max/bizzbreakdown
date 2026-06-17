@@ -1,4 +1,4 @@
-import { companyData } from "../../../src/companyData";
+import { getCompanyBySlug } from "../../../src/lib/companies";
 import CompanyDetail from "../../../src/components/CompanyDetail";
 import BottomNav from "../../../src/components/BottomNav";
 import { notFound } from "next/navigation";
@@ -9,7 +9,7 @@ export default async function CompanyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const company = companyData[slug];
+  const company = await getCompanyBySlug(slug);
 
   if (!company) {
     notFound();
