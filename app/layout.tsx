@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: "BizzBreakdown — Understand Any Indian Business in 5 Minutes",
   description: "Explore, compare, and track India's top startups and companies. Get clear insights on valuations, revenue, funding, and more — all in one place.",
   keywords: "Indian startups, startup data, company comparison, Zomato, Swiggy, Zepto, fintech, edtech, healthtech, Indian business",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "BizzBreakdown — Understand Any Indian Business in 5 Minutes",
     description: "Explore, compare, and track India's top startups and companies. Clear insights. Smart comparisons. Better decisions.",
